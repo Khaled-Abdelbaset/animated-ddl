@@ -1,41 +1,24 @@
 /* Fonts */
 body {
   font-family: "Tajawal", sans-serif;
-  background-color: #f8f9fa;
 }
-
-/* 
-   CUSTOM BUTTON STYLES 
-   To match the "Black line from center" requirement 
-*/
 
 .dropdown-toggle {
-  background-color: #fff;
   border: 1px solid #dee2e6;
   border-radius: 4px;
-  padding: 10px 15px;
+  padding: 0.5rem;
+  font-size: 18px;
   position: relative;
-  overflow: hidden; /* Important for the pseudo-element line */
+  overflow: hidden;
   transition: border-color 0.2s;
-  color: #333;
-}
-
-/* Remove default Bootstrap arrow and use our own if needed, 
-   or keep it aligned. Bootstrap adds ::after for the arrow. */
-.dropdown-toggle::after {
-  margin-right: auto; /* Pushes arrow to the left in RTL */
-  margin-left: 0;
 }
 
 .dropdown-toggle:hover {
-  background-color: #fff;
   border-color: #c4c4c4;
-  color: #333;
 }
 
 .dropdown-toggle:focus {
   box-shadow: none;
-  border-color: #c4c4c4;
 }
 
 /* THE BLACK LINE ANIMATION */
@@ -47,48 +30,72 @@ body {
   width: 100%;
   height: 2px;
   background-color: #000;
-
-  /* Start hidden (scaled to 0 from center) */
   transform: scaleX(0);
   transform-origin: center;
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.3s ease-in-out;
   z-index: 2;
 }
 
-/* When the dropdown is OPEN (Bootstrap adds .show to the button) */
 .dropdown-toggle.show::before {
   transform: scaleX(1);
+}
+
+.dropdown-toggle::after {
+  margin-right: auto;
+  margin-left: 0;
+
+  /* Reset border styles from Bootstrap */
+  border: none;
+  content: url("data:image/svg+xml,%3csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M6.60372 8.55529C6.7256 8.71666 7.08951 9.1984 7.30624 9.47611C7.74031 10.0323 8.33342 10.7714 8.97323 11.5083C9.61627 12.2489 10.2918 12.9702 10.8919 13.5005C11.1928 13.7663 11.4571 13.9684 11.6753 14.0999C11.8804 14.2235 12.0016 14.2493 12.0016 14.2493C12.0016 14.2493 12.1192 14.2235 12.3244 14.0999C12.5425 13.9684 12.8068 13.7663 13.1078 13.5005C13.7079 12.9702 14.3834 12.2489 15.0264 11.5083C15.6662 10.7714 16.2593 10.0323 16.6934 9.47608C16.9101 9.19837 17.2735 8.7173 17.3954 8.55593C17.6411 8.22241 18.1111 8.15047 18.4446 8.3961C18.7781 8.64173 18.8494 9.11123 18.6037 9.44476L18.6018 9.4473C18.474 9.61655 18.0971 10.1156 17.8759 10.3989C17.4321 10.9677 16.8216 11.7286 16.1591 12.4917C15.4997 13.2511 14.7741 14.0298 14.101 14.6245C13.7653 14.9212 13.425 15.1879 13.0988 15.3845C12.7932 15.5687 12.4063 15.75 11.9998 15.75C11.5933 15.75 11.2064 15.5687 10.9008 15.3845C10.5747 15.1879 10.2344 14.9212 9.89869 14.6245C9.22557 14.0298 8.4999 13.2511 7.84058 12.4917C7.17803 11.7286 6.5676 10.9677 6.12372 10.399C5.90243 10.1154 5.52551 9.61637 5.39793 9.44747L5.39628 9.44528C5.15064 9.11176 5.22154 8.64179 5.55506 8.39615C5.88857 8.15053 6.35808 8.22179 6.60372 8.55529Z' fill='currentColor'/%3e%3c/svg%3e");
+
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+
+  transform: scaleY(1);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+
+  /* Alignment */
+  vertical-align: middle;
+}
+
+/* Flip Vertically */
+.dropdown-toggle.show::after {
+  transform: scaleY(-1);
 }
 
 /* Dropdown Menu Styles */
 .dropdown-menu {
   border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border: 1px solid #eee;
   margin-top: 4px !important;
-  padding: 0.5rem 0;
+  padding: 0.5rem;
 }
 
 .dropdown-item {
-  padding: 10px 20px;
-  text-align: right; /* Ensure Arabic text aligns right */
+  padding: 0.5rem;
+  text-align: right;
   transition: all 0.2s;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .dropdown-item:hover {
-  background-color: #f8f9fa;
-  color: #000;
+  background-color: #f3f4f6;
 }
 
+/* Active State & Checkmark */
 .dropdown-item.active,
 .dropdown-item:active {
-  background-color: #e9ecef;
+  background-color: transparent;
   color: #000;
-  font-weight: bold;
 }
 
-/* Form Label override */
-.form-label {
-  font-weight: 600;
-  color: #333;
+/* The Checkmark Icon */
+.dropdown-item.active::after {
+  content: "✓";
+  color: #000;
 }

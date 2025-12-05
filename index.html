@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bootstrap Custom Select</title>
+    <title>Bootstrap Custom DDL</title>
 
     <!-- Bootstrap 5 CSS CDN -->
     <link
@@ -24,39 +24,27 @@
   </head>
   <body>
     <div class="container mt-5" style="max-width: 500px">
-      <!-- User provided structure -->
+      <!-- Example Theme Selector -->
       <div class="form-group w-100 position-relative">
         <div class="d-flex gap-1 mb-2">
           <span class="text-danger">*</span>
-          <label
-            for="ctl00_ctl33_g_b5fedf48_96bb_443e_a3d7_c062986725b6_ctl00_ddlWorkshopCategories"
-            id="ctl00_ctl33_g_b5fedf48_96bb_443e_a3d7_c062986725b6_ctl00_lblWorkshopCategory"
-            class="form-label mb-0"
-            >الموضوع</label
-          >
+          <label class="form-label mb-0">الموضوع</label>
         </div>
 
-        <!-- Original Select (Hidden) -->
-        <select
-          name="ctl00$ctl33$g_b5fedf48_96bb_443e_a3d7_c062986725b6$ctl00$ddlWorkshopCategories"
-          id="ctl00_ctl33_g_b5fedf48_96bb_443e_a3d7_c062986725b6_ctl00_ddlWorkshopCategories"
-          class="form-select form-dropdown d-none"
-          style="color: rgb(108, 115, 127)"
-          data-enhanced="true"
-        >
-          <option value="-1">اختر الموضوع</option>
+        <!-- Standard hidden select -->
+        <select name="ddlCategory" id="ddlCategory" class="form-select d-none">
+          <option value="">اختر الموضوع</option>
           <option value="1">الزكاة</option>
           <option value="2">الضرائب</option>
           <option value="3">الجمارك</option>
           <option value="4">عام</option>
         </select>
 
-        <!-- Custom Bootstrap Dropdown -->
+        <!-- Custom Dropdown Wrapper -->
         <div class="dropdown custom-dropdown-wrapper">
           <button
             class="btn dropdown-toggle w-100 text-end d-flex justify-content-between align-items-center"
             type="button"
-            id="ctl00_ctl33_g_b5fedf48_96bb_443e_a3d7_c062986725b6_ctl00_ddlWorkshopCategories_dropdown"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
@@ -65,17 +53,8 @@
 
           <ul
             class="dropdown-menu dropdown-menu-end w-100"
-            aria-labelledby="ctl00_ctl33_g_b5fedf48_96bb_443e_a3d7_c062986725b6_ctl00_ddlWorkshopCategories_dropdown"
             style="max-height: 500px; overflow-y: auto"
           >
-            <li>
-              <a
-                class="dropdown-item"
-                href="javascript:void(0);"
-                data-value="-1"
-                >اختر الموضوع</a
-              >
-            </li>
             <li>
               <a class="dropdown-item" href="javascript:void(0);" data-value="1"
                 >الزكاة</a
@@ -98,50 +77,13 @@
             </li>
           </ul>
         </div>
-
-        <span
-          id="ctl00_ctl33_g_b5fedf48_96bb_443e_a3d7_c062986725b6_ctl00_rfvForrblWorkshopCategory"
-          class="form-error text-danger"
-          style="display: none"
-          >الحقل مطلوب</span
-        >
       </div>
     </div>
 
     <!-- Bootstrap 5 JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-      // Sync Logic
-      document.addEventListener("DOMContentLoaded", () => {
-        const dropdownItems = document.querySelectorAll(".dropdown-item")
-        const dropdownButtonSpan = document.querySelector(
-          "#ctl00_ctl33_g_b5fedf48_96bb_443e_a3d7_c062986725b6_ctl00_ddlWorkshopCategories_dropdown span"
-        )
-        const hiddenSelect = document.getElementById(
-          "ctl00_ctl33_g_b5fedf48_96bb_443e_a3d7_c062986725b6_ctl00_ddlWorkshopCategories"
-        )
-
-        dropdownItems.forEach((item) => {
-          item.addEventListener("click", (e) => {
-            e.preventDefault()
-
-            // 1. Get value and text
-            const value = item.getAttribute("data-value")
-            const text = item.textContent
-
-            // 2. Update visible button text
-            dropdownButtonSpan.textContent = text
-
-            // 3. Update hidden select value
-            hiddenSelect.value = value
-
-            // 4. Update active state styles (optional)
-            dropdownItems.forEach((i) => i.classList.remove("active"))
-            item.classList.add("active")
-          })
-        })
-      })
-    </script>
+    <!-- Global Custom Script -->
+    <script src="script.js"></script>
   </body>
 </html>
