@@ -1,0 +1,94 @@
+/* Fonts */
+body {
+  font-family: "Tajawal", sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* 
+   CUSTOM BUTTON STYLES 
+   To match the "Black line from center" requirement 
+*/
+
+.dropdown-toggle {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 10px 15px;
+  position: relative;
+  overflow: hidden; /* Important for the pseudo-element line */
+  transition: border-color 0.2s;
+  color: #333;
+}
+
+/* Remove default Bootstrap arrow and use our own if needed, 
+   or keep it aligned. Bootstrap adds ::after for the arrow. */
+.dropdown-toggle::after {
+  margin-right: auto; /* Pushes arrow to the left in RTL */
+  margin-left: 0;
+}
+
+.dropdown-toggle:hover {
+  background-color: #fff;
+  border-color: #c4c4c4;
+  color: #333;
+}
+
+.dropdown-toggle:focus {
+  box-shadow: none;
+  border-color: #c4c4c4;
+}
+
+/* THE BLACK LINE ANIMATION */
+.dropdown-toggle::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+
+  /* Start hidden (scaled to 0 from center) */
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 2;
+}
+
+/* When the dropdown is OPEN (Bootstrap adds .show to the button) */
+.dropdown-toggle.show::before {
+  transform: scaleX(1);
+}
+
+/* Dropdown Menu Styles */
+.dropdown-menu {
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+  margin-top: 4px !important;
+  padding: 0.5rem 0;
+}
+
+.dropdown-item {
+  padding: 10px 20px;
+  text-align: right; /* Ensure Arabic text aligns right */
+  transition: all 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #000;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: #e9ecef;
+  color: #000;
+  font-weight: bold;
+}
+
+/* Form Label override */
+.form-label {
+  font-weight: 600;
+  color: #333;
+}
